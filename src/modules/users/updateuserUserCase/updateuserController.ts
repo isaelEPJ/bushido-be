@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { CreateUsersUserCase } from './createUsersUserCase';
-class CreateUsersController {
-    // constructor(private usersUserCase: CreateUsersUserCase) {}
+import { UpdateuserUserCase } from './updateuserUserCase';
 
-    async handle(request: Request, response: Response): Promise<Response> {
+class UpdateUserController {
+    build(request: Request, response: Response) {
         try {
             const {
+                id,
                 name,
                 imageUrl,
                 email,
@@ -18,9 +18,8 @@ class CreateUsersController {
                 isAdmin,
                 isActivate,
             } = request.body;
-            const createCategoryUserCase =
-                container.resolve(CreateUsersUserCase);
-            await createCategoryUserCase.execute({
+            const updateUserUserCase = container.resolve(UpdateuserUserCase);
+            updateUserUserCase.execute(id, {
                 name,
                 imageUrl,
                 email,
@@ -34,8 +33,8 @@ class CreateUsersController {
             });
             return response.status(201).send();
         } catch (err) {
-            return response.status(400).json(err);
+            return response.status(401).json(err);
         }
     }
 }
-export { CreateUsersController };
+export { UpdateUserController };

@@ -14,17 +14,17 @@ class AuthUsersUserCase {
                 password,
             );
             if (!authUser) {
-                throw 'Email or Password incorrects';
+                throw new Error('Email or Password incorrects');
             }
             if (authUser == null) {
-                throw 'User not found, try again.';
+                throw new Error('User not found, try again.');
             }
             if (authUser.email != email || authUser.password != password) {
-                throw 'Email or Password incorrects';
+                throw new Error('Email or Password incorrects');
             }
             return authUser;
         } catch (err) {
-            throw err;
+            throw new Error(err);
         }
     }
 }

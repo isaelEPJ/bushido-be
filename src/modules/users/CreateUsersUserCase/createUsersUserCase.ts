@@ -43,17 +43,14 @@ class CreateUsersUserCase {
             throw 'Name Already exists';
         }
         try {
-            if (email.includes('@') && email.includes('.com')) {
-                email = email.toLowerCase().replace(' ', '').trim();
-            } else {
-                throw 'Email Incorrect';
-            }
+            email = email.toLowerCase().replace(' ', '').trim();
+
             if (password.length >= 5) {
                 password = password.trim();
             } else {
                 throw 'password must contain at least 5 characters';
             }
-            if (cpf.length >= 11) {
+            if (cpf.length >= 8 || cpf.length <= 11) {
                 cpf = cpf
                     .replace('.', '')
                     .replace('.', '')

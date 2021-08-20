@@ -48,6 +48,48 @@ class UserRepository implements IUserRepository {
             throw new Error(err);
         }
     }
+    async delete(id: string): Promise<void> {
+        try {
+            await this.repository.delete({ id });
+        } catch (err) {
+            throw err;
+        }
+    }
+    async updateUser(
+        id: string,
+        {
+            name,
+            imageUrl,
+            email,
+            password,
+            codename,
+            cpf,
+            graduation,
+            description,
+            isAdmin,
+            isActivate,
+        }: IUserRepositoryDTO,
+    ): Promise<void> {
+        const userToUpdate = this.findUserById(id);
+        if (!userToUpdate) {
+            throw 'User Not Found';
+        }
+        await this.repository.update(
+            { id },
+            {
+                name,
+                imageUrl,
+                email,
+                password,
+                codename,
+                cpf,
+                graduation,
+                description,
+                isAdmin,
+                isActivate,
+            },
+        );
+    }
     async listUsers(): Promise<User[] | null> {
         try {
             const users = await this.repository.find();
