@@ -1,12 +1,11 @@
 import { Class } from '../entities/class';
-import { Student } from '../entities/student';
 
 interface IClassRepositoryDTO {
     name: string;
-    sensei: string;
+    sensei_id: string;
     imageUrl: string;
     dojo: string;
-    studentsId: string[];
+    student_id: string;
     description: string;
     location_cidade: string;
     location_rua: string;
@@ -21,9 +20,10 @@ interface IClassRepository {
     create(iClassRepositoryDTO: IClassRepositoryDTO): void;
     listClasses(): Promise<Class[]>;
     findClassById(id: string): Promise<Class>;
-    findClassByManyIds(ids: string[]): Promise<Student[]>;
-    findClassByCPF(cpf: string): Promise<Class | null>;
-    findClassByName(name: string): Promise<Class | null>;
+    findClassBySensei(id: string): Promise<Class>;
+    findClassByManyIds(ids: string[]): Promise<Class[]>;
+    findClassByName(name: string): Promise<Class[]>;
+    findUserSensei(isSensei: boolean): Promise<Class[]>;
 }
 
 export { IClassRepositoryDTO, IClassRepository };

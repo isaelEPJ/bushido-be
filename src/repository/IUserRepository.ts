@@ -21,7 +21,6 @@ interface IUserRepository {
     loginByUser(email: string, password: string): Promise<User>;
     findUserByCPF(cpf: string): Promise<User | null>;
     findUserByName(name: string): Promise<User | null>;
-    findUserSensei(isSensei: boolean): Promise<User[]>;
 }
 
 export { IUserRepositoryDTO, IUserRepository };

@@ -10,15 +10,13 @@ class UserRepository implements IUserRepository {
     constructor() {
         this.repository = getRepository(User);
     }
-    async findUserSensei(isSensei: boolean): Promise<User[]> {
-        const usersIsSensei = await this.repository.find({
-            isSensei: isSensei,
-        });
-        if (!usersIsSensei) {
-            throw 'users is sensei not existis';
-        }
-        return usersIsSensei;
-    }
+
+    // public static getInstance(): UserRepository {
+    //     if (!UserRepository.INSTANCE) {
+    //         UserRepository.INSTANCE = new UserRepository();
+    //     }
+    //     return UserRepository.INSTANCE;
+    // }
     async create({
         name,
         imageUrl,

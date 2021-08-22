@@ -9,13 +9,13 @@ class Class {
     @Column()
     name: string;
     @Column()
-    senseiId: string;
+    sensei_id: string;
     @Column()
     imageUrl: string;
     @Column()
     dojo: string;
-    @Column('simple-array')
-    studentsId: string[];
+    @Column()
+    student_id: string;
     @Column()
     description: string;
     @Column()

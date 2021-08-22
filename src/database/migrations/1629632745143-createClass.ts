@@ -18,7 +18,7 @@ export class createClass1629632745143 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
-                        name: 'senseiId',
+                        name: 'sensei_id',
                         type: 'varchar',
                     },
                     {
@@ -30,7 +30,7 @@ export class createClass1629632745143 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
-                        name: 'studentsId',
+                        name: 'student_id',
                         type: 'varchar',
                     },
                     {

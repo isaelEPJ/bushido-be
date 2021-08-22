@@ -49,12 +49,13 @@ export class createUsers1628543250992 implements MigrationInterface {
                         name: 'isAdmin',
                         type: 'boolean',
                     },
+
                     {
-                        name: 'isSensei',
+                        name: 'isActivate',
                         type: 'boolean',
                     },
                     {
-                        name: 'isActivate',
+                        name: 'isSensei',
                         type: 'boolean',
                     },
                     {
