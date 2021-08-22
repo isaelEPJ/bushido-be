@@ -12,7 +12,12 @@ interface IStudentRepositoryDTO {
     paymentDetail: number;
     details: string;
     lastGraduationDetail: string;
-    montlyPayment: boolean;
+    phone: string;
+    location_rua: string;
+    location_cidade: string;
+    location_estado: string;
+    location_numero: string;
+    location_cep: string;
 }
 
 @injectable()
@@ -21,7 +26,7 @@ class CreateStudentUserCase {
         @inject('StudentRepository')
         private studentRepository: StudentRepository,
     ) {}
-    async execute({
+    execute({
         name,
         email,
         cpf,
@@ -32,7 +37,12 @@ class CreateStudentUserCase {
         paymentDetail,
         details,
         lastGraduationDetail,
-        montlyPayment,
+        phone,
+        location_rua,
+        location_cidade,
+        location_estado,
+        location_numero,
+        location_cep,
     }: IStudentRepositoryDTO) {
         // const CpfuserAlreadyExists = await this.userRepository.findUserByCPF(
         //     cpf,
@@ -46,7 +56,6 @@ class CreateStudentUserCase {
         // if (NameUserAlreadyExists) {
         //     throw 'Name Already exists';
         // }
-
         try {
             email = email.toLowerCase().replace(' ', '').trim();
 
@@ -61,8 +70,8 @@ class CreateStudentUserCase {
             }
             const datetime = new Date(2020);
             const isActivate = true;
-
-            await this.studentRepository.create({
+            const montlyPayment = true;
+            this.studentRepository.create({
                 name,
                 email,
                 cpf,
@@ -73,13 +82,19 @@ class CreateStudentUserCase {
                 paymentDetail,
                 details,
                 lastGraduationDetail,
+                phone,
+                location_rua,
+                location_cidade,
+                location_estado,
+                location_numero,
+                location_cep,
                 montlyPayment,
                 isActivate,
                 last_graduation_date: datetime,
                 payment_date: datetime,
             });
         } catch (err) {
-            throw new Error(err);
+            throw err;
         }
     }
 }

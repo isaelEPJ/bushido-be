@@ -54,6 +54,30 @@ export class createStudentsTable1629422072895 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
+                        name: 'phone',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'location_rua',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'location_cidade',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'location_estado',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'location_numero',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'location_cep',
+                        type: 'varchar',
+                    },
+                    {
                         name: 'montlyPayment',
                         type: 'boolean',
                     },

@@ -17,6 +17,7 @@ class CreateUsersController {
                 description,
                 isAdmin,
                 isActivate,
+                isSensei,
             } = request.body;
             const createCategoryUserCase =
                 container.resolve(CreateUsersUserCase);
@@ -31,6 +32,7 @@ class CreateUsersController {
                 description,
                 isAdmin,
                 isActivate,
+                isSensei,
             });
             return response.status(201).send();
         } catch (err) {

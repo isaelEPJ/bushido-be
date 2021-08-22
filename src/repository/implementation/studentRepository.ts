@@ -12,6 +12,69 @@ class StudentRepository implements IStudentRepository {
         this.repository = getRepository(Student);
     }
 
+    async delete(id: string): Promise<void> {
+        try {
+            await this.repository.delete({ id });
+        } catch (err) {
+            throw err;
+        }
+    }
+    async updateStudent(
+        id: string,
+        {
+            name,
+            email,
+            cpf,
+            imageUrl,
+            graduation,
+            age,
+            timePratice,
+            paymentDetail,
+            details,
+            lastGraduationDetail,
+            phone,
+            location_rua,
+            location_cidade,
+            location_estado,
+            location_numero,
+            location_cep,
+            montlyPayment,
+            isActivate,
+            last_graduation_date,
+            payment_date,
+        }: IStudentRepositoryDTO,
+    ): Promise<void> {
+        const studentToUpdate = this.findStudentById(id);
+        if (!studentToUpdate) {
+            throw 'Student Not Found';
+        }
+        await this.repository.update(
+            { id },
+            {
+                name,
+                email,
+                cpf,
+                imageUrl,
+                graduation,
+                age,
+                timePratice,
+                paymentDetail,
+                details,
+                lastGraduationDetail,
+                phone,
+                location_rua,
+                location_cidade,
+                location_estado,
+                location_numero,
+                location_cep,
+                montlyPayment,
+                isActivate,
+                last_graduation_date,
+                payment_date,
+            },
+        );
+    }
+
     async create({
         name,
         email,
@@ -23,6 +86,12 @@ class StudentRepository implements IStudentRepository {
         paymentDetail,
         details,
         lastGraduationDetail,
+        phone,
+        location_rua,
+        location_cidade,
+        location_estado,
+        location_numero,
+        location_cep,
         montlyPayment,
         isActivate,
         last_graduation_date,
@@ -40,6 +109,12 @@ class StudentRepository implements IStudentRepository {
                 paymentDetail,
                 details,
                 lastGraduationDetail,
+                phone,
+                location_rua,
+                location_cidade,
+                location_estado,
+                location_numero,
+                location_cep,
                 montlyPayment,
                 isActivate,
                 last_graduation_date,
@@ -47,24 +122,64 @@ class StudentRepository implements IStudentRepository {
             });
             await this.repository.save(student);
         } catch (error) {
-            throw error.error;
+            throw error;
         }
-        throw new Error('Method not implemented.');
     }
-    findStudentByCpf(cpf: string): Promise<Student> {
-        throw new Error('Method not implemented.');
+    async listStudents(): Promise<Student[]> {
+        const allUsers = await this.repository.find();
+        if (!allUsers) {
+            throw 'Users not found';
+        }
+        return allUsers;
     }
-    findStudentByName(name: string): Promise<Student> {
-        throw new Error('Method not implemented.');
+    async findStudentById(id: string): Promise<Student> {
+        const userById = await this.repository.findOne({ id });
+        if (!userById) {
+            throw 'User not found';
+        }
+        return userById;
     }
-    findStudentByGraduation(graduation: string): Promise<Student[]> {
-        throw new Error('Method not implemented.');
+    async findStudentByCpf(cpf: string): Promise<Student> {
+        const userByCpf = await this.repository.findOne({ cpf });
+        if (!userByCpf) {
+            throw 'User not found';
+        }
+        return userByCpf;
     }
-    listStudents(): Promise<Student[]> {
-        throw new Error('Method not implemented.');
+
+    async findStudentByName(name: string): Promise<Student> {
+        const userByName = await this.repository.findOne({
+            name,
+        });
+        if (!userByName) {
+            throw 'User not found';
+        }
+        return userByName;
     }
-    listStudentsWithPayment(): Promise<Student[]> {
-        throw new Error('Method not implemented.');
+    async findStudentByGraduation(graduation: string): Promise<Student[]> {
+        const usersByGraduation = await this.repository.find({
+            graduation,
+        });
+        if (!usersByGraduation) {
+            throw 'Users With this graduation no exists';
+        }
+        return usersByGraduation;
+    }
+
+    async listStudentsWithPayment(montlyPayment: boolean): Promise<Student[]> {
+        if (montlyPayment === false) {
+            const usersByPaymentFalse = await this.repository.find({
+                montlyPayment: false,
+            });
+            return usersByPaymentFalse;
+        }
+        if (montlyPayment === true) {
+            const usersByPaymentTrue = await this.repository.find({
+                montlyPayment: true,
+            });
+            return usersByPaymentTrue;
+        }
+        throw 'Users not found';
     }
 }
 export { StudentRepository };

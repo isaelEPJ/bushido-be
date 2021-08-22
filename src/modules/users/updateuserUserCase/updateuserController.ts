@@ -17,6 +17,7 @@ class UpdateUserController {
                 description,
                 isAdmin,
                 isActivate,
+                isSensei,
             } = request.body;
             const updateUserUserCase = container.resolve(UpdateuserUserCase);
             updateUserUserCase.execute(id, {
@@ -30,6 +31,7 @@ class UpdateUserController {
                 description,
                 isAdmin,
                 isActivate,
+                isSensei,
             });
             return response.status(201).send();
         } catch (err) {

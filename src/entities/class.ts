@@ -1,50 +1,37 @@
 import { v4 as uuidv4 } from 'uuid';
+
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('students')
-class Student {
+@Entity('classes')
+class Class {
     @PrimaryGeneratedColumn('uuid')
     id: string;
     @Column()
     name: string;
     @Column()
-    email: string;
-    @Column()
-    cpf: string;
+    senseiId: string;
     @Column()
     imageUrl: string;
     @Column()
-    age: number;
+    dojo: string;
+    @Column('simple-array')
+    studentsId: string[];
     @Column()
-    timePratice: number;
-    @Column()
-    graduation: string;
-    @Column()
-    paymentDetail: number;
-    @Column()
-    details: string;
-    @Column()
-    lastGraduationDetail: string;
-    @Column()
-    phone: string;
-    @Column()
-    location_rua: string;
+    description: string;
     @Column()
     location_cidade: string;
     @Column()
-    location_estado: string;
+    location_rua: string;
     @Column()
     location_numero: string;
     @Column()
     location_cep: string;
     @Column()
-    montlyPayment: boolean;
+    location_estado: string;
     @Column()
     isActivate: boolean;
-    @Column()
-    last_graduation_date: Date;
-    @Column()
-    payment_date: Date;
+    @Column('timestamp with time zone')
+    date_event: Date;
     @Column('timestamp with time zone')
     altered_at: Date;
     @Column('timestamp with time zone')
@@ -57,4 +44,4 @@ class Student {
     }
 }
 
-export { Student };
+export { Class };

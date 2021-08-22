@@ -11,6 +11,7 @@ interface IUserRepositoryDTO {
     description: string;
     isAdmin: boolean;
     isActivate: boolean;
+    isSensei: boolean;
 }
 
 @injectable()
@@ -31,6 +32,7 @@ class UpdateuserUserCase {
             description,
             isAdmin,
             isActivate,
+            isSensei,
         }: IUserRepositoryDTO,
     ) {
         try {
@@ -45,6 +47,7 @@ class UpdateuserUserCase {
                 description,
                 isAdmin,
                 isActivate,
+                isSensei,
             });
         } catch (err) {
             throw err;

@@ -10,13 +10,15 @@ class UserRepository implements IUserRepository {
     constructor() {
         this.repository = getRepository(User);
     }
-
-    // public static getInstance(): UserRepository {
-    //     if (!UserRepository.INSTANCE) {
-    //         UserRepository.INSTANCE = new UserRepository();
-    //     }
-    //     return UserRepository.INSTANCE;
-    // }
+    async findUserSensei(isSensei: boolean): Promise<User[]> {
+        const usersIsSensei = await this.repository.find({
+            isSensei: isSensei,
+        });
+        if (!usersIsSensei) {
+            throw 'users is sensei not existis';
+        }
+        return usersIsSensei;
+    }
     async create({
         name,
         imageUrl,
@@ -28,6 +30,7 @@ class UserRepository implements IUserRepository {
         description,
         isAdmin,
         isActivate,
+        isSensei,
     }: IUserRepositoryDTO): Promise<void> {
         try {
             const user = this.repository.create({
@@ -41,6 +44,7 @@ class UserRepository implements IUserRepository {
                 description,
                 isAdmin,
                 isActivate,
+                isSensei,
             });
 
             await this.repository.save(user);
@@ -68,6 +72,7 @@ class UserRepository implements IUserRepository {
             description,
             isAdmin,
             isActivate,
+            isSensei,
         }: IUserRepositoryDTO,
     ): Promise<void> {
         const userToUpdate = this.findUserById(id);
@@ -87,6 +92,7 @@ class UserRepository implements IUserRepository {
                 description,
                 isAdmin,
                 isActivate,
+                isSensei,
             },
         );
     }

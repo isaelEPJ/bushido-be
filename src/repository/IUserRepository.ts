@@ -11,6 +11,7 @@ interface IUserRepositoryDTO {
     description: string;
     isAdmin: boolean;
     isActivate: boolean;
+    isSensei: boolean;
 }
 
 interface IUserRepository {
@@ -20,6 +21,7 @@ interface IUserRepository {
     loginByUser(email: string, password: string): Promise<User>;
     findUserByCPF(cpf: string): Promise<User | null>;
     findUserByName(name: string): Promise<User | null>;
+    findUserSensei(isSensei: boolean): Promise<User[]>;
 }
 
 export { IUserRepositoryDTO, IUserRepository };

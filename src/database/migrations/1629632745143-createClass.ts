@@ -1,10 +1,10 @@
-import { Column, MigrationInterface, QueryRunner, Table } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class createUsers1628543250992 implements MigrationInterface {
+export class createClass1629632745143 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'users',
+                name: 'classes',
                 columns: [
                     {
                         name: 'id',
@@ -18,7 +18,7 @@ export class createUsers1628543250992 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
-                        name: 'email',
+                        name: 'senseiId',
                         type: 'varchar',
                     },
                     {
@@ -26,19 +26,11 @@ export class createUsers1628543250992 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
-                        name: 'codename',
+                        name: 'dojo',
                         type: 'varchar',
                     },
                     {
-                        name: 'password',
-                        type: 'varchar',
-                    },
-                    {
-                        name: 'cpf',
-                        type: 'varchar',
-                    },
-                    {
-                        name: 'graduation',
+                        name: 'studentsId',
                         type: 'varchar',
                     },
                     {
@@ -46,16 +38,32 @@ export class createUsers1628543250992 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
-                        name: 'isAdmin',
-                        type: 'boolean',
+                        name: 'location_cidade',
+                        type: 'varchar',
                     },
                     {
-                        name: 'isSensei',
-                        type: 'boolean',
+                        name: 'location_rua',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'location_numero',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'location_cep',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'location_estado',
+                        type: 'varchar',
                     },
                     {
                         name: 'isActivate',
                         type: 'boolean',
+                    },
+                    {
+                        name: 'date_event',
+                        type: 'Timestamp',
                     },
                     {
                         name: 'altered_at',
@@ -73,6 +81,6 @@ export class createUsers1628543250992 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('users');
+        await queryRunner.dropTable('classes');
     }
 }

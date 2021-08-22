@@ -25,6 +25,8 @@ class User {
     @Column()
     isAdmin: boolean;
     @Column()
+    isSensei: boolean;
+    @Column()
     isActivate: boolean;
     @Column('timestamp with time zone')
     altered_at: Date;

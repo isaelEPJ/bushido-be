@@ -11,6 +11,12 @@ interface IStudentRepositoryDTO {
     paymentDetail: number;
     details: string;
     lastGraduationDetail: string;
+    phone: string;
+    location_rua: string;
+    location_cidade: string;
+    location_estado: string;
+    location_numero: string;
+    location_cep: string;
     montlyPayment: boolean;
     isActivate: boolean;
     last_graduation_date: Date;
@@ -19,10 +25,11 @@ interface IStudentRepositoryDTO {
 
 interface IStudentRepository {
     create(istudentRepositoryDTO: IStudentRepositoryDTO): Promise<void>;
+    findStudentById(cpf: string): Promise<Student>;
     findStudentByCpf(cpf: string): Promise<Student>;
     findStudentByName(name: string): Promise<Student>;
     findStudentByGraduation(graduation: string): Promise<Student[]>;
     listStudents(): Promise<Student[]>;
-    listStudentsWithPayment(): Promise<Student[]>;
+    listStudentsWithPayment(montlyPayment: boolean): Promise<Student[]>;
 }
 export { IStudentRepository, IStudentRepositoryDTO };

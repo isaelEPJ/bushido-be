@@ -11,6 +11,7 @@ interface IUserRepositoryDTO {
     description: string;
     isAdmin: boolean;
     isActivate: boolean;
+    isSensei: boolean;
 }
 @injectable()
 class CreateUsersUserCase {
@@ -29,6 +30,7 @@ class CreateUsersUserCase {
         description,
         isAdmin,
         isActivate,
+        isSensei,
     }: IUserRepositoryDTO): Promise<void> {
         const CpfuserAlreadyExists = await this.userRepository.findUserByCPF(
             cpf,
@@ -72,6 +74,7 @@ class CreateUsersUserCase {
                 description,
                 isAdmin,
                 isActivate,
+                isSensei,
             });
         } catch (err) {
             throw err;

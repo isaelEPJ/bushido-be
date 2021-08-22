@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { CreateStudentUserCase } from './createStudentUserCase';
+import { UpdateStudentUserCase } from './updateStudentUserCase';
 
-class CreateStudentsController {
-    async build(request: Request, response: Response) {
+class UpdateStudentController {
+    build(request: Request, response: Response) {
         try {
             const {
+                id,
                 name,
                 email,
                 cpf,
@@ -22,11 +23,15 @@ class CreateStudentsController {
                 location_estado,
                 location_numero,
                 location_cep,
+                montlyPayment,
+                isActivate,
+                last_graduation_date,
+                payment_date,
             } = request.body;
-            const createStudentUserCase = container.resolve(
-                CreateStudentUserCase,
+            const updateStudentUserCase = container.resolve(
+                UpdateStudentUserCase,
             );
-            createStudentUserCase.execute({
+            updateStudentUserCase.execute(id, {
                 name,
                 email,
                 cpf,
@@ -43,12 +48,15 @@ class CreateStudentsController {
                 location_estado,
                 location_numero,
                 location_cep,
+                montlyPayment,
+                isActivate,
+                last_graduation_date,
+                payment_date,
             });
-
             return response.status(201).send();
-        } catch (error) {
-            return response.status(400).json(error.message);
+        } catch (err) {
+            return response.status(401).json(err);
         }
     }
 }
-export { CreateStudentsController };
+export { UpdateStudentController };
