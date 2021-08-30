@@ -7,8 +7,9 @@ class ListUsersUserCase {
         @inject('UserRepository')
         private userRepository: UserRepository,
     ) {}
-    execute() {
-        return this.userRepository.listUsers();
+    async execute() {
+        const allUsers = await this.userRepository.listUsers();
+        return allUsers;
     }
 }
 export { ListUsersUserCase };

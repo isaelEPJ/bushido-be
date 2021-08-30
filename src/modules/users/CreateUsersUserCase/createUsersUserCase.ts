@@ -63,7 +63,7 @@ class CreateUsersUserCase {
             }
             isActivate = true;
             isAdmin = true;
-            this.userRepository.create({
+            await this.userRepository.create({
                 name,
                 imageUrl,
                 email,

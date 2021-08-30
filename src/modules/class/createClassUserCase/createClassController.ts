@@ -18,8 +18,9 @@ class CreateClassController {
                 location_cep,
                 location_estado,
             } = request.body;
+            console.log(name, sensei_id, imageUrl);
             const createClassUserCase = container.resolve(CreateClassUserCase);
-            createClassUserCase.execute({
+            await createClassUserCase.execute({
                 name,
                 sensei_id,
                 imageUrl,

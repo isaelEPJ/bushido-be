@@ -6,8 +6,8 @@ class RemoveUserUserCase {
     constructor(
         @inject('UserRepository') private userRepository: UserRepository,
     ) {}
-    execute(id: string) {
-        const userToRemove = this.userRepository.findUserById(id);
+    async execute(id: string) {
+        const userToRemove = await this.userRepository.findUserById(id);
         if (!userToRemove) {
             throw 'User no exists';
         }

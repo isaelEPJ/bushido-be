@@ -35,10 +35,9 @@ class CreateClassUserCase {
         location_estado,
     }: IClassRepositoryDTO) {
         try {
-            const datetime = new Date(2020);
-            const isActivate = true;
+            const datetime = new Date(2020, 12, 10);
             // const name = 'name teste';
-            await this.classRepository.create({
+            console.log(
                 name,
                 sensei_id,
                 imageUrl,
@@ -50,6 +49,20 @@ class CreateClassUserCase {
                 location_numero,
                 location_cep,
                 location_estado,
+            );
+
+            await this.classRepository.create({
+                name: 'name',
+                sensei_id: 'sensei_id',
+                imageUrl: 'imageUrl',
+                dojo: 'dojo',
+                student_id: 'student_id',
+                description: 'description',
+                location_cidade: 'location_cidade',
+                location_rua: 'location_rua',
+                location_numero: 'location_numero',
+                location_cep: 'location_cep',
+                location_estado: 'location_estado',
                 isActivate: true,
                 date_event: datetime,
             });

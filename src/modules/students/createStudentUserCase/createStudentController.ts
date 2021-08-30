@@ -26,7 +26,7 @@ class CreateStudentsController {
             const createStudentUserCase = container.resolve(
                 CreateStudentUserCase,
             );
-            createStudentUserCase.execute({
+           await createStudentUserCase.execute({
                 name,
                 email,
                 cpf,

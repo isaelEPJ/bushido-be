@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 import { UpdateuserUserCase } from './updateuserUserCase';
 
 class UpdateUserController {
-    build(request: Request, response: Response) {
+    async build(request: Request, response: Response) {
         try {
             const {
                 id,
@@ -20,7 +20,7 @@ class UpdateUserController {
                 isSensei,
             } = request.body;
             const updateUserUserCase = container.resolve(UpdateuserUserCase);
-            updateUserUserCase.execute(id, {
+            await updateUserUserCase.execute(id, {
                 name,
                 imageUrl,
                 email,
